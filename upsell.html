@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Espere! Seu Kit Ainda Está Incompleto</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;600;700;800&display=swap');
+
+    :root {
+      --green: #22c55e;
+      --green-dark: #16a34a;
+      --green-light: #dcfce7;
+      --yellow: #fbbf24;
+      --yellow-light: #fef9c3;
+      --red: #ef4444;
+      --red-light: #fee2e2;
+      --purple: #8b5cf6;
+      --purple-light: #ede9fe;
+      --dark: #1e293b;
+      --gray: #64748b;
+      --white: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f1f5f9;
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    .top-badge {
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px 60px;
+    }
+
+    /* HEADLINE */
+    .headline-block {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px 28px 32px;
+      margin-top: 28px;
+      text-align: center;
+      border: 2px solid var(--yellow);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .headline-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #fbbf24, #f59e0b, #22c55e);
+    }
+
+    .wait-tag {
+      display: inline-block;
+      background: var(--yellow-light);
+      color: #92400e;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 5px 14px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+      border: 1px solid #fde68a;
+    }
+
+    .headline-block h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(20px, 5vw, 28px);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--dark);
+    }
+
+    .headline-block h1 span {
+      color: var(--green-dark);
+    }
+
+    .headline-sub {
+      font-size: 15px;
+      color: var(--gray);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    /* TRANSITION */
+    .transition-block {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 16px;
+      border-left: 4px solid var(--green);
+      box-shadow: var(--shadow);
+    }
+
+    .transition-block p {
+      font-size: 15.5px;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .transition-block p+p {
+      margin-top: 10px;
+    }
+
+    .transition-block strong {
+      color: var(--dark);
+    }
+
+    /* BULLETS */
+    .bullets-block {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .bullets-block h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: var(--dark);
+    }
+
+    .bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bullet-item:last-child {
+      border-bottom: none;
+    }
+
+    .bullet-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 1px;
+    }
+
+    .bullet-text strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 2px;
+    }
+
+    .bullet-text span {
+      font-size: 13.5px;
+      color: var(--gray);
+      line-height: 1.5;
+    }
+
+    /* BONUS */
+    .bonus-block {
+      background: linear-gradient(135deg, #faf5ff, var(--purple-light));
+      border: 2px solid var(--purple);
+      border-radius: 20px;
+      padding: 28px;
+      margin-top: 16px;
+      box-shadow: 0 6px 28px rgba(139, 92, 246, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bonus-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple), #a78bfa, #22c55e);
+    }
+
+    .bonus-tag {
+      display: inline-block;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 14px;
+    }
+
+    .bonus-block h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .bonus-desc {
+      font-size: 14px;
+      color: #5b21b6;
+      margin-bottom: 18px;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .bonus-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .bonus-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+    }
+
+    .bonus-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bonus-item-icon {
+      font-size: 20px;
+      width: 36px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .bonus-item-name {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .bonus-item-qty {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .bonus-item-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .bonus-item-price .original {
+      font-size: 11px;
+      color: var(--gray);
+      text-decoration: line-through;
+    }
+
+    .bonus-item-price .free {
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--green-dark);
+    }
+
+    .bonus-total-bar {
+      background: var(--purple);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 800;
+    }
+
+    .bonus-total-bar .total-value {
+      font-size: 15px;
+      font-weight: 900;
+      color: #fde68a;
+    }
+
+    /* VALUE TABLE */
+    .value-table {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-top: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .value-table h3 {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+
+    .vt-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+    }
+
+    .vt-row:last-of-type {
+      border-bottom: none;
+    }
+
+    .vt-row .check {
+      color: var(--green);
+      margin-right: 8px;
+    }
+
+    .vt-row .vt-name {
+      color: var(--dark);
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .vt-row .vt-price {
+      font-weight: 800;
+      color: var(--gray);
+      text-decoration: line-through;
+      font-size: 13px;
+    }
+
+    .vt-divider {
+      border: none;
+      border-top: 2px solid var(--border);
+      margin: 12px 0;
+    }
+
+    .vt-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 4px;
+    }
+
+    .vt-total .label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray);
+      text-transform: uppercase;
+    }
+
+    .vt-total .total-crossed {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--red);
+      text-decoration: line-through;
+    }
+
+    .vt-you-pay {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 8px;
+    }
+
+    .vt-you-pay .label {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--green-dark);
+    }
+
+    .vt-you-pay .price {
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--green-dark);
+    }
+
+    /* PRICE */
+    .price-block {
+      background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+      border: 2px solid var(--green);
+      border-radius: 20px;
+      padding: 28px;
+      margin-top: 16px;
+      text-align: center;
+      box-shadow: 0 6px 32px rgba(34, 197, 94, 0.15);
+    }
+
+    .price-label {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--green-dark);
+      margin-bottom: 6px;
+    }
+
+    .price-original {
+      font-size: 14px;
+      color: var(--gray);
+      text-decoration: line-through;
+      margin-bottom: 2px;
+    }
+
+    .price-main {
+      font-family: 'Poppins', sans-serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--green-dark);
+      line-height: 1;
+      margin: 6px 0;
+    }
+
+    .price-main sup {
+      font-size: 22px;
+      font-weight: 700;
+      vertical-align: top;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .price-note {
+      font-size: 13px;
+      color: #4b7c5e;
+      margin-top: 6px;
+      font-weight: 600;
+    }
+
+    .urgency-bar {
+      background: var(--red-light);
+      border: 1px solid #fca5a5;
+      border-radius: 10px;
+      padding: 10px 16px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    /* CTA */
+    .cta-block {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-accept {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 18px 24px;
+      border-radius: 14px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+      line-height: 1.3;
+    }
+
+    .btn-accept:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(34, 197, 94, 0.5);
+    }
+
+    .btn-accept:active {
+      transform: translateY(0);
+    }
+
+    .btn-accept small {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 600;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .security-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .security-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 600;
+    }
+
+    .btn-decline {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 12px;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 4px 8px;
+      transition: color 0.15s;
+      font-family: 'Nunito', sans-serif;
+      font-style: italic;
+      max-width: 340px;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .btn-decline:hover {
+      color: var(--gray);
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .headline-block {
+      animation: fadeUp 0.4s 0.00s ease both;
+    }
+
+    .transition-block {
+      animation: fadeUp 0.4s 0.08s ease both;
+    }
+
+    .bullets-block {
+      animation: fadeUp 0.4s 0.14s ease both;
+    }
+
+    .bonus-block {
+      animation: fadeUp 0.4s 0.20s ease both;
+    }
+
+    .value-table {
+      animation: fadeUp 0.4s 0.26s ease both;
+    }
+
+    .price-block {
+      animation: fadeUp 0.4s 0.32s ease both;
+    }
+
+    .cta-block {
+      animation: fadeUp 0.4s 0.38s ease both;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
+      }
+
+      50% {
+        box-shadow: 0 6px 32px rgba(34, 197, 94, 0.7);
+      }
+    }
+
+    .btn-accept {
+      animation: pulse 2.5s ease infinite;
+    }
+
+    /* MODAL DOWNSELL */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px 24px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      animation: popIn 0.3s ease-out both;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+
+    .modal-header {
+      background: #fee2e2;
+      color: #b91c1c;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .modal-content h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: #1e293b;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .modal-content p {
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .modal-price {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .modal-price p {
+      margin-bottom: 8px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    .discount-badge {
+      background: #ef4444;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+      padding: 8px 16px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .modal-price-main {
+      font-size: 16px;
+      color: #16a34a;
+      font-weight: 700;
+    }
+
+    .modal-price-main strong {
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="top-badge">
+    ⚠️ Esta oferta aparece apenas UMA VEZ — não estará disponível depois
+  </div>
+
+  <div class="container">
+
+    <!-- HEADLINE -->
+    <div class="headline-block">
+      <div class="wait-tag">⏳ Espere, professora!</div>
+      <h1>Por R$&nbsp;37 você leva o<br><span>acervo completo de Português</span><br>— não só ortografia</h1>
+      <p class="headline-sub">500 atividades extras de ortografia + kit inteiro de gramática e produção de texto, tudo
+        incluso de graça.</p>
+    </div>
+
+    <!-- TRANSITION -->
+    <div class="transition-block">
+      <p>Você acabou de garantir 1000 atividades de ortografia — ótimo começo. Mas seus alunos também travam em
+        pronomes, gêneros textuais e produção escrita, não é?</p>
+      <p>Neste único upgrade você completa o acervo de ortografia <strong>e ainda leva um kit inteiro de gramática e
+          produção de texto sem pagar nada a mais por ele.</strong> Tudo na mesma plataforma, acessível agora.</p>
+      <p>Você já tomou a decisão mais difícil. Agora é só aproveitar enquanto esta tela está aberta.</p>
+    </div>
+
+    <!-- BULLETS -->
+    <div class="bullets-block">
+      <h2>📝 O que você ganha nas +500 atividades de ortografia:</h2>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">🔠</div>
+        <div class="bullet-text">
+          <strong>Cobertura completa dos 8 grupos de dificuldade</strong>
+          <span>LH/NH/CH, G/J, M antes de P e B, R/RR, SC/XC, Ç — tudo que o plano básico ainda não cobre.</span>
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">✏️</div>
+        <div class="bullet-text">
+          <strong>Ortografia dentro de frases e textos reais</strong>
+          <span>O aluno aprende a escrever certo onde mais importa — não só em listas isoladas de palavras.</span>
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">📅</div>
+        <div class="bullet-text">
+          <strong>Sequenciadas por nível — do 1º ao 5º ano</strong>
+          <span>Progressão pedagógica pronta. É só aplicar na turma certa, sem adaptar nada.</span>
+        </div>
+      </div>
+
+      <div class="bullet-item">
+        <div class="bullet-icon">✅</div>
+        <div class="bullet-text">
+          <strong>Gabarito completo de todas as atividades</strong>
+          <span>Corrija em segundos. Sua tarde fica livre.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BONUS -->
+    <div class="bonus-block">
+      <div class="bonus-tag">🎁 Bônus exclusivo — incluso de graça</div>
+      <h2>Kit Gramática &amp; Produção de Texto</h2>
+      <p class="bonus-desc">500 atividades extras para cobrir tudo que seus alunos precisam dominar em Língua Portuguesa
+        — sem você criar nada do zero.</p>
+
+      <div class="bonus-items">
+        <div class="bonus-item">
+          <div class="bonus-item-left">
+            <div class="bonus-item-icon">🧩</div>
+            <div>
+              <div class="bonus-item-name">Atividades de Pronomes</div>
+              <div class="bonus-item-qty">200 atividades · 1º ao 5º ano</div>
+            </div>
+          </div>
+          <div class="bonus-item-price">
+            <div class="original">R$ 27,00</div>
+            <div class="free">GRÁTIS</div>
+          </div>
+        </div>
+
+        <div class="bonus-item">
+          <div class="bonus-item-left">
+            <div class="bonus-item-icon">📖</div>
+            <div>
+              <div class="bonus-item-name">Atividades de Gêneros Textuais</div>
+              <div class="bonus-item-qty">200 atividades · carta, notícia, poema e mais</div>
+            </div>
+          </div>
+          <div class="bonus-item-price">
+            <div class="original">R$ 27,00</div>
+            <div class="free">GRÁTIS</div>
+          </div>
+        </div>
+
+        <div class="bonus-item">
+          <div class="bonus-item-left">
+            <div class="bonus-item-icon">🖊️</div>
+            <div>
+              <div class="bonus-item-name">Atividades de Produção de Texto</div>
+              <div class="bonus-item-qty">100 atividades · com roteiros guiados</div>
+            </div>
+          </div>
+          <div class="bonus-item-price">
+            <div class="original">R$ 17,00</div>
+            <div class="free">GRÁTIS</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bonus-total-bar">
+        <span>Valor total dos bônus</span>
+        <span class="total-value">R$ 71,00 — inclusos de graça</span>
+      </div>
+    </div>
+
+    <!-- VALUE TABLE -->
+    <div class="value-table">
+      <h3>📦 Tudo que você recebe hoje</h3>
+
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">500 atividades — Plano Básico (já suas)</span></span>
+        <span class="vt-price">R$ 10,00</span>
+      </div>
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">+1000 atividades de ortografia</span></span>
+        <span class="vt-price">R$ 27,00</span>
+      </div>
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">200 Atividades de Pronomes (bônus)</span></span>
+        <span class="vt-price">R$ 27,00</span>
+      </div>
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">200 Atividades de Gêneros Textuais (bônus)</span></span>
+        <span class="vt-price">R$ 27,00</span>
+      </div>
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">100 Atividades de Produção de Texto
+            (bônus)</span></span>
+        <span class="vt-price">R$ 17,00</span>
+      </div>
+      <div class="vt-row">
+        <span><span class="check">✔</span><span class="vt-name">Gabarito completo · Acesso vitalício ·
+            BNCC</span></span>
+        <span class="vt-price">incluso</span>
+      </div>
+
+      <hr class="vt-divider" />
+
+      <div class="vt-total">
+        <span class="label">Valor real do kit</span>
+        <span class="total-crossed">R$ 108,00</span>
+      </div>
+      <div class="vt-you-pay">
+        <span class="label">🎯 Você paga apenas</span>
+        <span class="price">R$ 37,00</span>
+      </div>
+    </div>
+
+    <!-- PRICE -->
+    <div class="price-block">
+      <div class="price-label">🔥 Oferta única — só nesta tela</div>
+      <div class="price-original">Valor real: R$ 108,00</div>
+      <div class="price-main"><sup>R$</sup>37</div>
+      <div class="price-note">Pagamento único · Acesso imediato · Sem mensalidade</div>
+      <div class="urgency-bar">
+        ⏰ Este preço desaparece quando você sair desta página
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-block">
+      <a href="https://pay.wiapy.com/FDqd_ugaCI" class="btn-accept">
+        ✅ SIM! QUERO O ACERVO COMPLETO DE PORTUGUÊS
+        <small>1500 atividades de ortografia + kit gramática e produção — por apenas R$ 37</small>
+      </a>
+
+      <div class="security-row">
+        <span class="security-item">🔒 Compra segura</span>
+        <span class="security-item">📧 Acesso imediato</span>
+        <span class="security-item">🛡️ Garantia 7 dias</span>
+      </div>
+
+      <button class="btn-decline" onclick="document.getElementById('downsell-modal').style.display='flex'">
+        Não, prefiro ficar só com as 500 atividades e montar o resto depois, pagando separado por cada kit.
+      </button>
+    </div>
+
+  </div>
+
+  <!-- DOWNSELL MODAL -->
+  <div id="downsell-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('downsell-modal').style.display='none'">×</button>
+      <div class="modal-header">
+        ⚠️ ESPERE! ÚLTIMA CHANCE...
+      </div>
+      <h2>Você tem certeza que vai deixar todo esse material para trás?</h2>
+      <p>Sei que a rotina de professora é corrida e o orçamento pode apertar. Por isso, quero te fazer uma
+        <strong>oferta irrecusável</strong> para você não sair de mãos abanando hoje.
+      </p>
+      <div class="modal-price">
+        <p>Leve TUDO que você viu nesta página com</p>
+        <div class="discount-badge">50% DE DESCONTO</div>
+        <div class="modal-price-main">Por apenas <strong>R$ 18,50</strong></div>
+      </div>
+      <a href="https://pay.wiapy.com/GnwO5E4_r" class="btn-accept" style="margin-top: 10px;">
+        ✅ SIM! QUERO TUDO POR R$ 18,50
+      </a>
+      <a href="#" onclick="document.getElementById('downsell-modal').style.display='none'; return false;"
+        class="btn-decline" style="display:block; text-align:center; margin: 15px auto 0; font-size:13px;">
+        Não, vou perder essa chance e ficar apenas com o básico.
+      </a>
+    </div>
+  </div>
+
+</body>
+
+</html>
